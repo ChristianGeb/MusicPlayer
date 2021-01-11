@@ -4,6 +4,8 @@ const artist = document.querySelector("#artist");
 const music = document.querySelector("audio");
 const progressContainer = document.querySelector("#progress-container");
 const progress = document.querySelector("#progress");
+const currentTimeEl = document.querySelector("#current-time");
+const durationEl = document.querySelector("#duration");
 const prevBtn = document.querySelector("#prev");
 const playBtn = document.querySelector("#play");
 const nextBtn = document.querySelector("#next");
@@ -85,6 +87,13 @@ function updateProgressBar(e) {
     } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+
+    const durationMinutes = Math.floor(duration / 60);
+    let durationSeconds = Math.floor(duration % 60);
+    if (durationSeconds < 10) {
+      durationSeconds = `0${durationSeconds}`;
+    }
+    durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
   }
 }
 
